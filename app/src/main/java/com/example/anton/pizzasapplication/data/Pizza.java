@@ -16,6 +16,9 @@ public class Pizza extends FoodItem {
     private TypeCrustPizza m_Crust;
     private boolean m_shapeSquare = false;
 
+    public Pizza() {
+        m_toppings = new ArrayList<Topping>();
+    }
     public Pizza(TypePizza typePizza, TypeCrustPizza crustPizza) {
         m_typePizza = typePizza;
         m_Crust = crustPizza;

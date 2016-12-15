@@ -54,7 +54,7 @@ public class MenuFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
         ArrayList row_Menu = getListData();
         m_listView_menu = (ListView) view.findViewById(R.id.listView_menu);
-        m_listView_menu.setAdapter(new RowMenuAdapter(getContext(),row_Menu));
+        m_listView_menu.setAdapter(new RowMenuAdapter(getActivity(), getContext(),row_Menu));
 
         return view;
     }
@@ -81,17 +81,34 @@ public class MenuFragment extends Fragment {
 
         RowData rowData = new RowData();
         rowData.setImage(R.drawable.common_google_signin_btn_icon_dark_focused);
-        rowData.setText("Google");
-        rowData.setButton(R.drawable.common_plus_signin_btn_icon_light_pressed);
-
+        rowData.setText("PIZZA");
+        rowData.setButton(R.drawable.button_next);
         results.add(rowData);
         // Add some more dummy data for testing
         RowData rowData1 = new RowData();
         rowData1.setImage(R.drawable.common_google_signin_btn_icon_dark_focused);
-        rowData1.setText("Google");
-        rowData1.setButton(R.drawable.common_plus_signin_btn_icon_light_pressed);
-
+        rowData1.setText("SANDWICH");
+        rowData1.setButton(R.drawable.button_next);
         results.add(rowData1);
+
+        RowData rowData2 = new RowData();
+        rowData2.setImage(R.drawable.common_google_signin_btn_icon_dark_focused);
+        rowData2.setText("PANCAKE");
+        rowData2.setButton(R.drawable.button_next);
+        results.add(rowData2);
+
+        RowData rowData3 = new RowData();
+        rowData3.setImage(R.drawable.common_google_signin_btn_icon_dark_focused);
+        rowData3.setText("SALAD");
+        rowData3.setButton(R.drawable.button_next);
+        results.add(rowData3);
+
+        RowData rowData4 = new RowData();
+        rowData4.setImage(R.drawable.common_google_signin_btn_icon_dark_focused);
+        rowData4.setText("PASTA");
+        rowData4.setButton(R.drawable.button_next);
+        results.add(rowData4);
+
         return results;
     }
 

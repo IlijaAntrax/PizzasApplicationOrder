@@ -11,8 +11,11 @@ public class LaunchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch);
 
+        //Load User, open Login if user is for first time in app and start main activity
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
+
+        finish();
 
     }
 }

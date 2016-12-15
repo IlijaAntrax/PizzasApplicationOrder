@@ -1,7 +1,9 @@
 package com.example.anton.pizzasapplication.objectModels;
 
+import android.app.Activity;
+import android.app.FragmentTransaction;
 import android.content.Context;
-import android.util.Printer;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +13,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.anton.pizzasapplication.MakeOrderActivity;
 import com.example.anton.pizzasapplication.R;
+import com.example.anton.pizzasapplication.data.FoodItem;
+import com.example.anton.pizzasapplication.data.Pancake;
+import com.example.anton.pizzasapplication.data.Pasta;
+import com.example.anton.pizzasapplication.data.Pizza;
+import com.example.anton.pizzasapplication.data.Salad;
+import com.example.anton.pizzasapplication.data.Sandwich;
+import com.example.anton.pizzasapplication.fragments.MakeOrderFragment;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -23,10 +34,12 @@ public class RowMenuAdapter extends BaseAdapter {
 
     private ArrayList<RowData> m_rowListMenu;
     private LayoutInflater m_layoutInflater;
+    private Activity m_Activity;
 
-    public RowMenuAdapter(Context aContext, ArrayList<RowData> aListData) {
+    public RowMenuAdapter(Activity aActivity, Context aContext, ArrayList<RowData> aListData) {
         this.m_rowListMenu = aListData;
         m_layoutInflater = LayoutInflater.from(aContext);
+        m_Activity = aActivity;
     }
 
     @Override
@@ -59,13 +72,14 @@ public class RowMenuAdapter extends BaseAdapter {
         }
 
         holder.imageView.setImageResource(m_rowListMenu.get(i).getImage());
-        holder.textView.setText(m_rowListMenu.get(i).getText() + String.valueOf(i));
+        holder.textView.setText(m_rowListMenu.get(i).getText());
         holder.imageButton.setImageResource(m_rowListMenu.get(i).getButton());
 
         holder.imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(m_layoutInflater.getContext(), "Selected: " + holder.textView.getText(), Toast.LENGTH_SHORT).show();
+                showOrderActivity(holder.textView.getText().toString());
             }
         });
 
@@ -75,5 +89,33 @@ public class RowMenuAdapter extends BaseAdapter {
         ImageView imageView;
         TextView textView;
         ImageButton imageButton;
+    }
+
+    public void showOrderActivity(String order) {
+        FoodItem orderObject = null;
+        switch (order) {
+            case "PIZZA":
+                orderObject = new Pizza(); break;
+            case "SANDWICH":
+                orderObject = new Sandwich(); break;
+            case "PANCAKE":
+                orderObject  = new Pancake(); break;
+            case "PASTA":
+                orderObject  = new Pasta(); break;
+            case "SALAD":
+                orderObject  = new Salad(); break;
+        }
+        showActivity(orderObject);
+    }
+    public void showActivity(FoodItem order) {
+
+        Intent intent = new Intent(m_Activity, MakeOrderActivity.class);
+        //intent.putExtra("ORDER_FOOD", (Serializable) order);
+        m_Activity.startActivity(intent);
+
+        //MakeOrderFragment makeOrderFragment = new MakeOrderFragment(order);
+        //FragmentTransaction fragmentTransaction = m_Activity.getFragmentManager().beginTransaction();
+        //fragmentTransaction.replace(R.id.fragment_menu_context,makeOrderFragment);
+        //fragmentTransaction.commit();
     }
 }
