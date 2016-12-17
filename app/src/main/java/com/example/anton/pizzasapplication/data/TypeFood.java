@@ -9,6 +9,7 @@ public enum TypeFood {
     SANDWICH,
     PANCAKE,
     SALAD,
+    PASTA,
     TOPPING,
     DRINK
 }

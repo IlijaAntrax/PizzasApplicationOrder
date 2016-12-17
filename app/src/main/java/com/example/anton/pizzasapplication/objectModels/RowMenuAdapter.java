@@ -21,6 +21,7 @@ import com.example.anton.pizzasapplication.data.Pasta;
 import com.example.anton.pizzasapplication.data.Pizza;
 import com.example.anton.pizzasapplication.data.Salad;
 import com.example.anton.pizzasapplication.data.Sandwich;
+import com.example.anton.pizzasapplication.data.TypeFood;
 import com.example.anton.pizzasapplication.fragments.MakeOrderFragment;
 
 import java.io.Serializable;
@@ -93,24 +94,30 @@ public class RowMenuAdapter extends BaseAdapter {
 
     public void showOrderActivity(String order) {
         FoodItem orderObject = null;
+        TypeFood typeFood = null;
         switch (order) {
             case "PIZZA":
-                orderObject = new Pizza(); break;
+                orderObject = new Pizza();
+                typeFood = TypeFood.PIZZA; break;
             case "SANDWICH":
-                orderObject = new Sandwich(); break;
+                orderObject = new Sandwich();
+                typeFood = TypeFood.SANDWICH; break;
             case "PANCAKE":
-                orderObject  = new Pancake(); break;
+                orderObject  = new Pancake();
+                typeFood = TypeFood.PANCAKE; break;
             case "PASTA":
-                orderObject  = new Pasta(); break;
+                orderObject  = new Pasta();
+                typeFood = TypeFood.PASTA; break;
             case "SALAD":
-                orderObject  = new Salad(); break;
+                orderObject  = new Salad();
+                typeFood = TypeFood.SALAD; break;
         }
-        showActivity(orderObject);
+        showActivity(orderObject,typeFood);
     }
-    public void showActivity(FoodItem order) {
+    public void showActivity(FoodItem aOrder, TypeFood aTypeFood) {
 
         Intent intent = new Intent(m_Activity, MakeOrderActivity.class);
-        //intent.putExtra("ORDER_FOOD", (Serializable) order);
+        intent.putExtra("TYPE_FOOD", aTypeFood);
         m_Activity.startActivity(intent);
 
         //MakeOrderFragment makeOrderFragment = new MakeOrderFragment(order);

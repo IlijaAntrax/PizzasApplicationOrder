@@ -46,5 +46,16 @@ public class Pizza extends FoodItem {
     public TypeSize getM_Size() {
         return m_Size;
     }
-
+    public void setM_Crust(TypeCrustPizza crust) {
+        m_Crust = crust;
+    }
+    public TypeCrustPizza getM_Crust() {
+        return m_Crust;
+    }
+    public void setM_shapeSquare(boolean shape) {
+        m_shapeSquare = shape;
+    }
+    public boolean isM_shapeSquare() {
+        return m_shapeSquare;
+    }
 }
