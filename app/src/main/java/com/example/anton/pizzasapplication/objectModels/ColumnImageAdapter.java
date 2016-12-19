@@ -44,7 +44,7 @@ public class ColumnImageAdapter extends BaseAdapter{
 
     @Override
     public Object getItem(int i) {
-        return null;
+        return m_FoodIds[i];
     }
 
     @Override
